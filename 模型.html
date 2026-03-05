@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS模型详解</title>
+    <link rel="stylesheet" href="模型.css">
+</head>
+<body>
+    <div class="container">
+        <h1>CSS模型详解</h1>
+        
+        <h2>1. 盒模型 (Box Model)</h2>
+        <p>盒模型是CSS中最基础的概念，每个HTML元素都可以看作是一个矩形的盒子。</p>
+        
+        <div class="box-model-container">
+            <h3>盒模型组成：</h3>
+  
+            <div class="box-model-demo">
+                <div class="box-model-label content-label">Content</div>
+                <div class="box-model-label padding-label">Padding</div>
+                <div class="box-model-label border-label">Border</div>
+                <div class="box-model-label margin-label">Margin</div>
+                内容区域：123 456 789 word
+            </div>
+            
+            <h3>box-sizing 属性：</h3>
+            <div class="box-sizing-demo box-sizing-border-box">
+                box-sizing: border-box;<br>
+                width=300px (包含padding+border)
+            </div>
+            <div class="box-sizing-demo box-sizing-content-box">
+                box-sizing: content-box;<br>
+                width=300px (内容区) + padding + border
+            </div>
+        </div>
+        
+        <h2>2. 布局模型 (Layout Models)</h2>
+        
+        <div class="layout-demo">
+            <h3>Flexbox 布局模型</h3>
+            <div class="flex-container">
+                <div class="flex-item">弹性项目1</div>
+                <div class="flex-item">弹性项目2</div>
+                <div class="flex-item">弹性项目3</div>
+            </div>
+        </div>
+        
+        <div class="layout-demo">
+            <h3>Grid 布局模型</h3>
+            <div class="grid-container">
+                <div class="grid-item">网格项1</div>
+                <div class="grid-item">网格项2</div>
+                <div class="grid-item">网格项3</div>
+                <div class="grid-item">网格项4</div>
+                <div class="grid-item">网格项5</div>
+                <div class="grid-item">网格项6</div>
+            </div>
+        </div>
+        
+        <div class="layout-demo">
+            <h3>Float 布局模型（传统）</h3>
+            <div class="float-container">
+                <div class="float-item">浮动1</div>
+                <div class="float-item">浮动2</div>
+                <div class="float-item">浮动3</div>
+            </div>
+        </div>
+        
+        <h2>3. 定位模型 (Positioning Model)</h2>
+        <div class="position-container">
+            <p class="position-static">static: 默认定位（忽略top, left等属性）</p>
+            <p class="position-relative">relative: 相对定位（相对于自身原始位置）</p>
+            <p class="position-absolute">absolute: 绝对定位（相对于最近的已定位祖先元素）</p>
+            <div class="position-sticky">sticky: 粘性定位（滚动到特定位置时变为fixed）</div>
+        </div>
+        <p class="position-fixed">fixed: 固定定位（相对于视口）</p>
+        
+        <h2>4. 文本模型 (Text Model)</h2>
+        <div class="text-model-demo">
+            <h3>显示类型 (Display)</h3>
+            <div class="inline-block-demo">inline-block元素</div>
+            <div class="inline-block-demo">可以设置宽高</div>
+            <span class="inline-demo">inline元素</span>
+            <span class="inline-demo">不能设置宽高</span>
+        </div>
+        
+        <h2>5. 视觉格式化模型 (Visual Formatting Model)</h2>
+        <div class="visual-formatting">
+            <h3>显示属性 (Display)</h3>
+            <div class="block-element">block元素：独占一行</div>
+            <div class="block-element">block元素：独占一行</div>
+            <p>display: none 会完全移除元素</p>
+            <p>visibility: hidden 会隐藏元素但仍占据空间</p>
+        </div>
+        
+        <h2>6. 层叠模型 (Stacking Model)</h2>
+        <div class="stacking-context">
+            <h3>z-index 层叠顺序</h3>
+            <div class="stacked-element z-index-1">z-index: 1</div>
+            <div class="stacked-element z-index-2">z-index: 2</div>
+            <div class="stacked-element z-index-3">z-index: 3</div>
+        </div>
+        
+        <h2>7. 变换模型 (Transform Model)</h2>
+        <div class="transform-demo">
+            <h3>基本变换效果</h3>
+            <div class="transform-box">原图</div>
+            <div class="transform-box rotate">旋转 (rotate)</div>
+            <div class="transform-box scale">缩放 (scale)</div>
+            <div class="transform-box translate">移动 (translate)</div>
+            <div class="transform-box skew">倾斜 (skew)</div>
+            <div class="transform-box transform-combined">组合变换</div>
+            
+            <h3>变换中心点演示</h3>
+            <div class="transform-box" style="transform-origin: top left;">自定义中心点</div>
+        </div>
+        
+        <h2>8. 过渡模型 (Transition Model)</h2>
+        <div class="transition-demo">
+            <h3>悬停查看过渡效果</h3>
+            <div class="transition-box">悬停我</div>
+            
+            <h3>不同过渡属性演示</h3>
+            <div class="transition-box transition-property">特定属性过渡</div>
+            
+            <h3>过渡时间函数</h3>
+            <div class="transition-box" style="transition: all 2s ease-in-out;" onmouseover="this.style.background='#16a085'" onmouseout="this.style.background='#3498db'">
+                ease-in-out
+            </div>
+            <div class="transition-box" style="transition: all 2s linear;" onmouseover="this.style.background='#16a085'" onmouseout="this.style.background='#3498db'">
+                linear
+            </div>
+            <div class="transition-box" style="transition: all 2s ease-in;" onmouseover="this.style.background='#16a085'" onmouseout="this.style.background='#3498db'">
+                ease-in
+            </div>
+        </div>
+        
+        <h2>9. 动画模型 (Animation Model)</h2>
+        <div class="animation-demo">
+            <h3>基础动画效果</h3>
+            <div class="animation-box slide-animation">滑入动画</div>
+            <div class="animation-box bounce-animation">弹跳动画</div>
+            <div class="animation-box rainbow-animation">彩虹动画</div>
+            
+            <h3>复杂动画效果</h3>
+            <div class="animation-box complex-animation">复合动画</div>
+            
+            <h3>动画属性控制</h3>
+            <div class="animation-box" style="animation: slideIn 2s 1s infinite alternate ease-in-out;">延迟1秒，无限次，交替播放</div>
+        </div>
+        
+        <h2>7. CSS模型总结</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>模型类型</th>
+                    <th>主要属性</th>
+                    <th>功能</th>
+                    <th>应用场景</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>盒模型</strong></td>
+                    <td>width, height, padding, border, margin, box-sizing</td>
+                    <td>定义元素的尺寸和间距</td>
+                    <td>所有HTML元素的基础布局</td>
+                </tr>
+                <tr>
+                    <td><strong>布局模型</strong></td>
+                    <td>display, flex, grid, float</td>
+                    <td>控制元素的排列方式</td>
+                    <td>页面整体布局结构</td>
+                </tr>
+                <tr>
+                    <td><strong>定位模型</strong></td>
+                    <td>position, top, right, bottom, left, z-index</td>
+                    <td>精确定位元素位置</td>
+                    <td>弹窗、导航栏、特殊定位需求</td>
+                </tr>
+                <tr>
+                    <td><strong>文本模型</strong></td>
+                    <td>display, line-height, text-align, white-space</td>
+                    <td>控制文本显示方式</td>
+                    <td>文字排版、内联元素处理</td>
+                </tr>
+                <tr>
+                    <td><strong>视觉格式化模型</strong></td>
+                    <td>display, position, float, overflow</td>
+                    <td>决定元素如何在页面中呈现</td>
+                    <td>元素显示/隐藏、溢出处理</td>
+                </tr>
+                <tr>
+                    <td><strong>层叠模型</strong></td>
+                    <td>z-index, position, opacity</td>
+                    <td>控制元素堆叠顺序</td>
+                    <td>重叠元素的层级关系</td>
+                </tr>
+                <tr>
+                    <td><strong>变换模型</strong></td>
+                    <td>transform, transform-origin</td>
+                    <td>元素的旋转、缩放、移动、倾斜</td>
+                    <td>动画效果、交互反馈</td>
+                </tr>
+                <tr>
+                    <td><strong>过渡模型</strong></td>
+                    <td>transition, transition-property, transition-duration</td>
+                    <td>平滑的状态变化</td>
+                    <td>悬停效果、状态切换</td>
+                </tr>
+                <tr>
+                    <td><strong>动画模型</strong></td>
+                    <td>animation, keyframes</td>
+                    <td>复杂的循环动画</td>
+                    <td>加载动画、提示动画</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <h2>8. 模型之间的关系</h2>
+        <p>CSS的各种模型并不是独立存在的，而是相互配合工作的：</p>
+        <ul>
+            <li><strong>盒模型</strong>是所有模型的基础，每个元素都有盒模型</li>
+            <li><strong>布局模型</strong>决定了元素如何排列和分布空间</li>
+            <li><strong>定位模型</strong>提供了更精确的位置控制</li>
+            <li><strong>视觉格式化模型</strong>决定了元素的显示和隐藏</li>
+            <li><strong>层叠模型</strong>解决了元素重叠时的显示顺序</li>
+            <li><strong>变换/过渡/动画模型</strong>提供了动态效果的支持</li>
+        </ul>
+        
+        <p>理解这些模型及其相互关系，有助于更好地掌握CSS布局和设计技巧。</p>
+    </div>
+</body>
+</html>

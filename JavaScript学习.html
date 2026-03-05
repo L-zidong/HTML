@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 入门示例</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        
+        .section {
+            margin: 20px 0;
+            padding: 15px;
+            border-left: 4px solid #4CAF50;
+            background-color: #f9f9f9;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        input {
+            padding: 8px;
+            margin: 5px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        #result {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #e7f3ff;
+            border-radius: 4px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>JavaScript 入门示例</h1>
+        
+        <div class="section">
+            <h2>1. 基本变量和数据类型</h2>
+            <button onclick="showBasics()">显示基本数据类型示例</button>
+            <div id="basicsResult"></div>
+        </div>
+        
+        <div class="section">
+            <h2>2. 函数示例</h2>
+            <input type="number" id="num1" placeholder="输入第一个数字">
+            <input type="number" id="num2" placeholder="输入第二个数字">
+            <button onclick="calculateSum()">计算两数之和</button>
+            <div id="sumResult"></div>
+        </div>
+        
+        <div class="section">
+            <h2>3. 条件语句和循环</h2>
+            <input type="number" id="loopNum" placeholder="输入一个数字进行计数">
+            <button onclick="countNumbers()">计数到该数字</button>
+            <div id="loopResult"></div>
+        </div>
+        
+        <div class="section">
+            <h2>4. 数组和对象操作</h2>
+            <button onclick="arrayObjectDemo()">数组和对象演示</button>
+            <div id="arrayObjectResult"></div>
+        </div>
+        
+        <div class="section">
+            <h2>5. DOM 操作</h2>
+            <p id="demoText">这段文字将被修改</p>
+            <button onclick="changeText()">修改上面的文字</button>
+            <button onclick="addListItem()">添加列表项</button>
+            <ul id="myList">
+                <li>初始列表项</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>6. 事件处理</h2>
+            <p>尝试点击下面的按钮并观察控制台输出</p>
+            <button id="eventButton">点击我查看控制台</button>
+        </div>
+    </div>
+
+    <script>
+        // 1. 基本变量和数据类型示例
+        function showBasics() {
+            // 不同的数据类型
+            var myString = "Hello World";
+            let myNumber = 42;
+            const myBoolean = true;
+            var myArray = [1, 2, 3, "four", 5];
+            var myObject = {
+                name: "张三",
+                age: 25,
+                student: false
+            };
+            
+            let result = `
+                字符串: ${myString}<br>
+                数字: ${myNumber}<br>
+                布尔值: ${myBoolean}<br>
+                数组: [${myArray.join(', ')}]<br>
+                对象: 名字=${myObject.name}, 年龄=${myObject.age}, 学生=${myObject.student}
+            `;
+            
+            document.getElementById('basicsResult').innerHTML = result;
+        }
+        
+        // 2. 函数示例
+        function calculateSum() {
+            let num1 = parseFloat(document.getElementById('num1').value) || 0;
+            let num2 = parseFloat(document.getElementById('num2').value) || 0;
+            let sum = num1 + num2;
+            
+            document.getElementById('sumResult').innerHTML = 
+                `<strong>${num1} + ${num2} = ${sum}</strong>`;
+        }
+        
+        // 3. 条件语句和循环
+        function countNumbers() {
+            let num = parseInt(document.getElementById('loopNum').value) || 0;
+            let result = '';
+            
+            if (num <= 0) {
+                result = '请输入一个正整数';
+            } else if (num > 100) {
+                result = '数字太大了，请输入小于100的数字';
+            } else {
+                for (let i = 1; i <= num; i++) {
+                    result += i + ' ';
+                }
+            }
+            
+            document.getElementById('loopResult').innerHTML = result;
+        }
+        
+        // 4. 数组和对象操作
+        function arrayObjectDemo() {
+            // 数组操作
+            let fruits = ['苹果', '香蕉', '橙子'];
+            fruits.push('葡萄');
+            fruits.splice(1, 1); // 删除索引为1的元素
+            
+            // 对象操作
+            let person = {
+                name: '李四',
+                hobbies: ['读书', '游泳', '编程']
+            };
+            person.age = 30;
+            
+            let result = `
+                修改后的水果数组: [${fruits.join(', ')}]<br>
+                人员信息: ${person.name}, 年龄:${person.age}, 爱好:[${person.hobbies.join(', ')}]
+            `;
+            
+            document.getElementById('arrayObjectResult').innerHTML = result;
+        }
+        
+        // 5. DOM 操作
+        function changeText() {
+            document.getElementById('demoText').textContent = 
+                '文字已被JavaScript修改！';
+            document.getElementById('demoText').style.color = '#4CAF50';
+        }
+        
+        function addListItem() {
+            let list = document.getElementById('myList');
+            let newItem = document.createElement('li');
+            newItem.textContent = `新的列表项 ${list.children.length}`;
+            list.appendChild(newItem);
+        }
+        
+        // 6. 事件处理
+        document.getElementById('eventButton').addEventListener('click', function() {
+            console.log('按钮被点击了！');
+            alert('你点击了按钮，这是一个事件处理的例子！');
+        });
+        
+        // 页面加载完成后的初始化
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('页面已完全加载');
+        });
+        
+        // 额外的实用函数示例
+        // 使用箭头函数的简单计算器
+        const calculator = {
+            add: (a, b) => a + b,
+            subtract: (a, b) => a - b,
+            multiply: (a, b) => a * b,
+            divide: (a, b) => b !== 0 ? a / b : '除数不能为零'
+        };
+        
+        // 模板字符串示例
+        function greetUser(name = '访客') {
+            return `你好，${name}！欢迎学习JavaScript！`;
+        }
+        
+        // 在页面加载时显示欢迎信息
+        window.onload = function() {
+            console.log(greetUser());
+            console.log('这是控制台，按F12查看输出');
+        };
+    </script>
+</body>
+</html>

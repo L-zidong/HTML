@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS字体、背景和颜色属性演示</title>
+    <style>
+        body {
+            font-family: Arial, "Microsoft YaHei", sans-serif;
+            padding: 20px;
+            margin: 0;
+        }
+        
+        /* 颜色相关属性 */
+        .color-name {
+            color: red;
+        }
+        
+        .color-hex {
+            color: #3366ff;
+        }
+        
+        .color-rgb {
+            color: rgb(255, 128, 0);
+        }
+        
+        .color-rgba {
+            color: rgba(0, 128, 0, 0.7); /* 半透明绿色 */
+        }
+        
+        .color-hsl {
+            color: hsl(120, 100%, 50%);
+        }
+        
+        .color-hsla {
+            color: hsla(240, 100%, 50%, 0.6); /* 半透明蓝色 */
+        }
+        
+        /* 背景颜色 */
+        .bg-color-name {
+            background-color: lightblue;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        
+        .bg-color-hex {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        
+        .bg-color-rgb {
+            background-color: rgb(200, 255, 200);
+            padding: 10px;
+            margin: 5px 0;
+        }
+        
+        .bg-color-rgba {
+            background-color: rgba(255, 200, 200, 0.7);
+            padding: 10px;
+            margin: 5px 0;
+        }
+        
+        /* 背景图片 */
+        .bg-image {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23eee"/><circle cx="20" cy="20" r="5" fill="%23ccc"/><circle cx="50" cy="50" r="5" fill="%23ccc"/><circle cx="80" cy="80" r="5" fill="%23ccc"/></svg>');
+            background-repeat: repeat;
+            padding: 10px;
+            margin: 5px 0;
+            height: 100px;
+        }
+        
+        .bg-image-no-repeat {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><rect width="50" height="50" fill="%23f00"/><circle cx="25" cy="25" r="10" fill="%2300f"/></svg>');
+            background-repeat: no-repeat;
+            padding: 10px;
+            margin: 5px 0;
+            height: 100px;
+        }
+        
+        .bg-image-position {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><rect width="50" height="50" fill="%230f0"/><circle cx="25" cy="25" r="10" fill="%23f0f"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right top;
+            padding: 10px;
+            margin: 5px 0;
+            height: 100px;
+        }
+        
+        .bg-image-fixed {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><rect width="20" height="20" fill="%23aaa"/><rect x="0" y="0" width="10" height="10" fill="%23888"/><rect x="10" y="10" width="10" height="10" fill="%23888"/></svg>');
+            background-attachment: fixed;
+            background-repeat: repeat;
+            padding: 10px;
+            margin: 5px 0;
+            height: 100px;
+        }
+        
+        .bg-size-cover {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23ff0"/><circle cx="50" cy="50" r="30" fill="%230ff"/></svg>');
+            background-repeat: no-repeat;
+            background-size: cover;
+            padding: 10px;
+            margin: 5px 0;
+            height: 100px;
+        }
+        
+        /* 渐变背景 */
+        .bg-linear-gradient {
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            padding: 10px;
+            margin: 5px 0;
+            color: white;
+        }
+        
+        .bg-radial-gradient {
+            background: radial-gradient(circle, #ff7e5f, #feb47b);
+            padding: 10px;
+            margin: 5px 0;
+            color: white;
+            height: 100px;
+        }
+        
+        .bg-multiple-gradient {
+            background: linear-gradient(45deg, rgba(255,0,0,0.5), rgba(0,255,0,0.5)), linear-gradient(135deg, rgba(0,0,255,0.5), rgba(255,255,0,0.5));
+            padding: 10px;
+            margin: 5px 0;
+            color: white;
+            height: 100px;
+        }
+        
+        /* 边框和圆角 */
+        .border-solid {
+            border: 2px solid #333;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        
+        .border-dashed {
+            border: 2px dashed #666;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        
+        .border-dotted {
+            border: 2px dotted #999;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        
+        .rounded-corners {
+            border: 2px solid #333;
+            border-radius: 15px;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        
+        /* 字体大小 */
+        .font-size-demo {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        
+        .small {
+            font-size: 12px;
+        }
+        
+        .large {
+            font-size: 32px;
+        }
+        
+        /* 字体粗细 */
+        .normal-weight {
+            font-weight: normal;
+        }
+        
+        .bold-weight {
+            font-weight: bold;
+        }
+        
+        .bolder-weight {
+            font-weight: bolder;
+        }
+        
+        .weight-900 {
+            font-weight: 900;
+        }
+        
+        /* 字体样式 */
+        .normal-style {
+            font-style: normal;
+        }
+        
+        .italic-style {
+            font-style: italic;
+        }
+        
+        .oblique-style {
+            font-style: oblique;
+        }
+        
+        /* 字体族 */
+        .serif-font {
+            font-family: Georgia, serif;
+        }
+        
+        .sans-serif-font {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        
+        .monospace-font {
+            font-family: "Courier New", monospace;
+        }
+        
+        /* 文本装饰 */
+        .underline {
+            text-decoration: underline;
+        }
+        
+        .overline {
+            text-decoration: overline;
+        }
+        
+        .line-through {
+            text-decoration: line-through;
+        }
+        
+        /* 文本转换 */
+        .uppercase {
+            text-transform: uppercase;
+        }
+        
+        .lowercase {
+            text-transform: lowercase;
+        }
+        
+        .capitalize {
+            text-transform: capitalize;
+        }
+        
+        /* 行高 */
+        .line-height-number {
+            line-height: 1.6;
+        }
+        
+        /* 字母间距 */
+        .letter-spacing-wide {
+            letter-spacing: 2px;
+        }
+        
+        /* 单词间距 */
+        .word-spacing-wide {
+            word-spacing: 10px;
+        }
+        
+        /* 文本对齐 */
+        .text-center {
+            text-align: center;
+        }
+        
+        .text-right {
+            text-align: right;
+        }
+        
+        /* 字体简写 */
+        .shorthand-font {
+            font: italic bold 20px Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSS字体、背景和颜色属性演示</h1>
+    
+    <h2>1. 颜色属性 (color)</h2>
+    <p class="color-name">使用颜色名称: red</p>
+    <p class="color-hex">使用十六进制: #3366ff</p>
+    <p class="color-rgb">使用RGB: rgb(255, 128, 0)</p>
+    <p class="color-rgba">使用RGBA: rgba(0, 128, 0, 0.7) - 半透明</p>
+    <p class="color-hsl">使用HSL: hsl(120, 100%, 50%)</p>
+    <p class="color-hsla">使用HSLA: hsla(240, 100%, 50%, 0.6) - 半透明</p>
+    
+    <h2>2. 背景颜色 (background-color)</h2>
+    <p class="bg-color-name">使用颜色名称: lightblue</p>
+    <p class="bg-color-hex">使用十六进制: #f0f0f0</p>
+    <p class="bg-color-rgb">使用RGB: rgb(200, 255, 200)</p>
+    <p class="bg-color-rgba">使用RGBA: rgba(255, 200, 200, 0.7) - 半透明</p>
+    
+    <h2>3. 背景图片 (background-image)</h2>
+    <div class="bg-image">背景图片 - 平铺 (repeat)</div>
+    <div class="bg-image-no-repeat">背景图片 - 不平铺 (no-repeat)</div>
+    <div class="bg-image-position">背景图片 - 位置在右上 (position: right top)</div>
+    <div class="bg-image-fixed">背景图片 - 固定 (attachment: fixed)</div>
+    <div class="bg-size-cover">背景图片 - 覆盖容器 (size: cover)</div>
+    
+    <h2>4. 渐变背景</h2>
+    <div class="bg-linear-gradient">线性渐变背景</div>
+    <div class="bg-radial-gradient">径向渐变背景</div>
+    <div class="bg-multiple-gradient">多重渐变背景</div>
+    
+    <h2>5. 边框和圆角</h2>
+    <p class="border-solid">实线边框</p>
+    <p class="border-dashed">虚线边框</p>
+    <p class="border-dotted">点线边框</p>
+    <p class="rounded-corners">带圆角的边框</p>
+    
+    <h2>6. 字体大小 (font-size)</h2>
+    <p class="font-size-demo">这是24像素的字体</p>
+    <p class="small">这是12像素的小字体</p>
+    <p class="large">这是32像素的大字体</p>
+    
+    <h2>7. 字体粗细 (font-weight)</h2>
+    <p class="normal-weight">这是normal(400)字体粗细</p>
+    <p class="bold-weight">这是bold(700)字体粗细</p>
+    <p class="bolder-weight">这是bolder字体粗细</p>
+    <p class="weight-900">这是900最粗的字体粗细</p>
+    
+    <h2>8. 字体样式 (font-style)</h2>
+    <p class="normal-style">这是normal字体样式</p>
+    <p class="italic-style">这是italic斜体样式</p>
+    <p class="oblique-style">这是oblique倾斜样式</p>
+    
+    <h2>9. 字体族 (font-family)</h2>
+    <p class="serif-font">这是衬线字体(Serif)</p>
+    <p class="sans-serif-font">这是无衬线字体(Sans-serif)</p>
+    <p class="monospace-font">这是等宽字体(Monospace)</p>
+    
+    <h2>10. 文本装饰 (text-decoration)</h2>
+    <p class="underline">这是下划线文本</p>
+    <p class="overline">这是上划线文本</p>
+    <p class="line-through">这是删除线文本</p>
+    
+    <h2>11. 文本转换 (text-transform)</h2>
+    <p class="uppercase">this will be converted to uppercase</p>
+    <p class="lowercase">THIS WILL BE CONVERTED TO LOWERCASE</p>
+    <p class="capitalize">this will capitalize first letter of each word</p>
+    
+    <h2>12. 行高 (line-height)</h2>
+    <p class="line-height-number">这是line-height: 1.6的文本，行间距适中，比较适合阅读。<br>第二行内容</p>
+    
+    <h2>13. 字母间距 (letter-spacing)</h2>
+    <p class="letter-spacing-wide">这是较宽字母间距</p>
+    
+    <h2>14. 单词间距 (word-spacing)</h2>
+    <p class="word-spacing-wide">这是较宽单词间距的句子 This is wide word</p>
+    
+    <h2>15. 文本对齐 (text-align)</h2>
+    <p class="text-center">居中对齐文本 Center aligned text</p>
+    <p class="text-right">右对齐文本 Right aligned text</p>
+    
+    <h2>16. 字体简写 (font)</h2>
+    <p class="shorthand-font">这是使用font简写属性设置的文本：斜体、粗体、20px大小、Arial字体</p>
+</body>
+</html>

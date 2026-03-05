@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>更多CSS属性演示</title>
+    <style>
+        body {
+            font-family: Arial, "Microsoft YaHei", sans-serif;
+            padding: 20px;
+            margin: 0;
+            background-color: #f5f5f5;
+        }
+        
+        /* Flexbox 布局 */
+        .flex-container {
+            display: flex;
+            background-color: #e0e0e0;
+            padding: 10px;
+            margin: 10px 0;
+            min-height: 100px;
+        }
+        
+        .flex-item {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            margin: 5px;
+            text-align: center;
+        }
+        
+        .flex-grow {
+            flex-grow: 1;
+        }
+        
+        .flex-shrink {
+            flex-shrink: 1;
+        }
+        
+        .flex-basis {
+            flex-basis: 100px;
+        }
+        
+        /* Grid 布局 */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+            background-color: #e0e0e0;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        
+        .grid-item {
+            background-color: #2196F3;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        /* 定位属性 */
+        .relative-container {
+            position: relative;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            height: 200px;
+            margin: 10px 0;
+        }
+        
+        .absolute-positioned {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background-color: #FF9800;
+            color: white;
+            padding: 10px;
+        }
+        
+        .fixed-positioned {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: #9C27B0;
+            color: white;
+            padding: 10px;
+        }
+        
+        .sticky-positioned {
+            position: sticky;
+            top: 0;
+            background-color: #607D8B;
+            color: white;
+            padding: 10px;
+            margin: 5px 0;
+        }
+        
+        /* 变换属性 */
+        .transform-box {
+            width: 100px;
+            height: 100px;
+            background-color: #E91E63;
+            margin: 20px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+        
+        .rotate {
+            transform: rotate(45deg);
+        }
+        
+        .scale {
+            transform: scale(1.2);
+        }
+        
+        .translate {
+            transform: translate(20px, 10px);
+        }
+        
+        .skew {
+            transform: skew(20deg, 10deg);
+        }
+        
+        /* 过渡属性 */
+        .transition-box {
+            width: 100px;
+            height: 100px;
+            background-color: #009688;
+            margin: 20px;
+            display: inline-block;
+            transition: all 0.5s ease-in-out;
+        }
+        
+        .transition-box:hover {
+            background-color: #FF5722;
+            width: 150px;
+            height: 150px;
+            border-radius: 20px;
+        }
+        
+        /* 动画属性 */
+        .animation-box {
+            width: 100px;
+            height: 100px;
+            background-color: #9E9E9E;
+            margin: 20px;
+            display: inline-block;
+            animation: slideIn 2s infinite alternate;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(200px);
+            }
+        }
+        
+        .bounce-animation {
+            animation: bounce 1s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+        
+        /* 盒模型相关 */
+        .box-model {
+            width: 200px;
+            height: 100px;
+            padding: 20px;
+            margin: 10px;
+            border: 5px solid #673AB7;
+            background-color: #CDDC39;
+            box-sizing: border-box; /* 包含padding和border在width/height内 */
+        }
+        
+        /* 阴影效果 */
+        .box-shadow {
+            width: 100px;
+            height: 100px;
+            background-color: #795548;
+            margin: 20px;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-size: 24px;
+        }
+        
+        /* 透明度 */
+        .opacity-demo {
+            opacity: 0.5;
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background-color: #3F51B5;
+            margin: 10px;
+        }
+        
+        /* 溢出处理 */
+        .overflow-container {
+            width: 200px;
+            height: 100px;
+            border: 1px solid #333;
+            overflow: auto;
+            margin: 10px 0;
+        }
+        
+        .overflow-content {
+            width: 300px;
+            height: 200px;
+            background: linear-gradient(to bottom, #ff7e5f, #feb47b);
+        }
+        
+        /* 文本相关 */
+        .text-ellipsis {
+            width: 200px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            border: 1px solid #333;
+            padding: 10px;
+        }
+        
+        .word-wrap {
+            width: 100px;
+            border: 1px solid #333;
+            padding: 10px;
+            word-wrap: break-word;
+        }
+        
+        /* 显示属性 */
+        .hidden-element {
+            display: none;
+        }
+        
+        .inline-element {
+            display: inline;
+            background-color: #00bcd4;
+            padding: 5px;
+        }
+        
+        .inline-block-element {
+            display: inline-block;
+            background-color: #ffeb3b;
+            padding: 5px;
+            margin: 5px;
+        }
+        
+        /* 光标属性 */
+        .cursor-pointer {
+            cursor: pointer;
+            padding: 10px;
+            background-color: #8bc34a;
+            margin: 5px 0;
+        }
+        
+        .cursor-help {
+            cursor: help;
+            padding: 10px;
+            background-color: #ffc107;
+            margin: 5px 0;
+        }
+        
+        .cursor-crosshair {
+            cursor: crosshair;
+            padding: 10px;
+            background-color: #ff9800;
+            margin: 5px 0;
+        }
+        
+        /* 用户选择 */
+        .unselectable {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            background-color: #9e9e9e;
+            padding: 10px;
+        }
+        
+        /* 滤镜效果 */
+        .filter-blur {
+            filter: blur(2px);
+            display: inline-block;
+            margin: 10px;
+        }
+        
+        .filter-grayscale {
+            filter: grayscale(100%);
+            display: inline-block;
+            margin: 10px;
+        }
+        
+        .filter-brightness {
+            filter: brightness(1.5);
+            display: inline-block;
+            margin: 10px;
+        }
+        
+        .filter-contrast {
+            filter: contrast(200%);
+            display: inline-block;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>更多CSS属性演示</h1>
+    
+    <h2>1. Flexbox 布局</h2>
+    <div class="flex-container">
+        <div class="flex-item">项目 1</div>
+        <div class="flex-item flex-grow">项目 2 (flex-grow)</div>
+        <div class="flex-item">项目 3</div>
+    </div>
+    
+    <h2>2. Grid 布局</h2>
+    <div class="grid-container">
+        <div class="grid-item">网格 1</div>
+        <div class="grid-item">网格 2</div>
+        <div class="grid-item">网格 3</div>
+        <div class="grid-item">网格 4</div>
+        <div class="grid-item">网格 5</div>
+        <div class="grid-item">网格 6</div>
+    </div>
+    
+    <h2>3. 定位属性</h2>
+    <div class="relative-container">
+        <p>相对定位容器</p>
+        <div class="absolute-positioned">绝对定位元素</div>
+    </div>
+    <div class="fixed-positioned">固定定位元素</div>
+    <div class="sticky-positioned">粘性定位元素</div>
+    
+    <h2>4. 变换属性 (Transform)</h2>
+    <div class="transform-box rotate">旋转45度</div>
+    <div class="transform-box scale">缩放1.2倍</div>
+    <div class="transform-box translate">移动(20px, 10px)</div>
+    <div class="transform-box skew">倾斜变形</div>
+    
+    <h2>5. 过渡属性 (Transition)</h2>
+    <p>将鼠标悬停在下面的方块上查看过渡效果：</p>
+    <div class="transition-box">悬停我</div>
+    
+    <h2>6. 动画属性 (Animation)</h2>
+    <div class="animation-box">滑动动画</div>
+    <div class="animation-box bounce-animation">弹跳动画</div>
+    
+    <h2>7. 盒模型</h2>
+    <div class="box-model">盒模型示例 (包含边距、内边距和边框)</div>
+    
+    <h2>8. 阴影效果</h2>
+    <div class="box-shadow">盒阴影</div>
+    <p class="text-shadow">文字阴影</p>
+    
+    <h2>9. 透明度</h2>
+    <div class="opacity-demo">透明度0.5</div>
+    
+    <h2>10. 溢出处理</h2>
+    <div class="overflow-container">
+        <div class="overflow-content">这是一个超出容器大小的内容，演示溢出处理</div>
+    </div>
+    
+    <h2>11. 文本相关属性</h2>
+    <p class="text-ellipsis">这是一段很长的文字，当超出容器宽度时会显示省略号...</p>
+    <p class="word-wrap">ThisIsAVeryLongWordThatWillBreakAndWrapToNextLine</p>
+    
+    <h2>12. 显示属性</h2>
+    <span class="inline-element">行内元素</span>
+    <div class="inline-block-element">行内块元素</div>
+    <div class="inline-block-element">行内块元素</div>
+    
+    <h2>13. 光标属性</h2>
+    <div class="cursor-pointer">指针光标</div>
+    <div class="cursor-help">帮助光标</div>
+    <div class="cursor-crosshair">十字光标</div>
+    
+    <h2>14. 用户选择</h2>
+    <p class="unselectable">这段文字不能被选中</p>
+    
+    <h2>15. 滤镜效果</h2>
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><rect width='100' height='100' fill='%234CAF50'/><circle cx='50' cy='50' r='30' fill='%23FF5722'/></svg>" alt="示例图片" class="filter-blur" title="模糊滤镜">
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><rect width='100' height='100' fill='%234CAF50'/><circle cx='50' cy='50' r='30' fill='%23FF5722'/></svg>" alt="示例图片" class="filter-grayscale" title="灰度滤镜">
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><rect width='100' height='100' fill='%234CAF50'/><circle cx='50' cy='50' r='30' fill='%23FF5722'/></svg>" alt="示例图片" class="filter-brightness" title="亮度滤镜">
+    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><rect width='100' height='100' fill='%234CAF50'/><circle cx='50' cy='50' r='30' fill='%23FF5722'/></svg>" alt="示例图片" class="filter-contrast" title="对比度滤镜">
+    
+    <h2>总结</h2>
+    <p>以上演示了CSS中的许多重要属性，包括但不限于：</p>
+    <ul>
+        <li><strong>布局</strong>: Flexbox, Grid, Positioning</li>
+        <li><strong>视觉效果</strong>: Transform, Transition, Animation, Shadow, Filter</li>
+        <li><strong>盒模型</strong>: Margin, Padding, Border, Box-sizing</li>
+        <li><strong>文本处理</strong>: Overflow, Word-wrap, Text-overflow</li>
+        <li><strong>交互性</strong>: Cursor, User-select</li>
+    </ul>
+    <p>这些属性只是CSS功能的一部分，CSS还包含更多高级特性和属性，如媒体查询、自定义属性(CSS变量)、混合模式等等。</p>
+</body>
+</html>

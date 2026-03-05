@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>null vs undefined 区别详解</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+        }
+        
+        h2 {
+            color: #45a049;
+            margin-top: 30px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .comparison-table th {
+            background-color: #f2f2f2;
+            font-weight: bold;
+        }
+        
+        .comparison-table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .code-block {
+            background-color: #f4f4f4;
+            padding: 20px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+        }
+        
+        .result-box {
+            background-color: #e7f3ff;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #2196F3;
+        }
+        
+        .btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        
+        .btn:hover {
+            background-color: #45a049;
+        }
+        
+        .key-differences {
+            background-color: #fff3cd;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+            border-left: 4px solid #ffc107;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>null vs undefined 详解</h1>
+        
+        <div class="key-differences">
+            <h2>核心区别总结</h2>
+            <ul>
+                <li><strong>null</strong>: 表示"故意设置为空值"，是一个明确的没有对象值的值</li>
+                <li><strong>undefined</strong>: 表示"未定义"，是变量声明了但未赋值时的默认值</li>
+            </ul>
+        </div>
+        
+        <h2>1. 基本定义</h2>
+        <div class="code-block">
+// null - 明确表示"无值"或"空值"
+let emptyValue = null;
+
+// undefined - 表示变量已声明但未赋值
+let uninitializedVar; // undefined
+        </div>
+        
+        <h2>2. 类型检查</h2>
+        <div class="code-block">
+console.log(typeof null);      // "object" (这是JavaScript的一个历史bug)
+console.log(typeof undefined); // "undefined"
+console.log(null instanceof Object); // false
+        </div>
+        
+        <button class="btn" onclick="showTypeExamples()">运行类型示例</button>
+        <div id="typeResults" class="result-box"></div>
+        
+        <h2>3. 赋值场景</h2>
+        <div class="code-block">
+// undefined 出现的场景：
+let a;                           // 声明但未初始化
+let b = {x: 1}; console.log(b.y); // 访问不存在的对象属性
+function f() {} console.log(f()); // 函数没有返回值
+function g(x) { console.log(x); } g(); // 函数参数未传递
+
+// null 出现的场景：
+let c = null; // 明确设置为无值
+        </div>
+        
+        <button class="btn" onclick="showAssignmentExamples()">运行赋值示例</button>
+        <div id="assignmentResults" class="result-box"></div>
+        
+        <h2>4. 比较运算</h2>
+        <div class="code-block">
+// == 比较 (相等)
+console.log(null == undefined);  // true
+console.log(null == 0);          // true
+console.log(undefined == 0);     // false
+
+// === 比较 (严格相等)
+console.log(null === undefined); // false
+console.log(null === null);      // true
+console.log(undefined === undefined); // true
+        </div>
+        
+        <button class="btn" onclick="showComparisonExamples()">运行比较示例</button>
+        <div id="comparisonResults" class="result-box"></div>
+        
+        <h2>5. 实际应用场景</h2>
+        <div class="code-block">
+// null 的典型用途：
+function findUser(id) {
+    // 如果找不到用户，返回 null
+    if (!validId(id)) {
+        return null;
+    }
+    return getUserById(id);
+}
+
+// undefined 的典型用途：
+function processOptions(options) {
+    // 检查选项是否被提供
+    if (options === undefined) {
+        options = getDefaultOptions();
+    }
+}
+        </div>
+        
+        <h2>6. 检测方法</h2>
+        <div class="code-block">
+// 检测 undefined
+let x;
+if (typeof x === 'undefined') { /* x 未定义 */ }
+if (x === undefined) { /* x 未定义 */ }
+
+// 检测 null
+if (x === null) { /* x 为 null */ }
+
+// 同时检测 null 或 undefined (falsy 值)
+if (!x) { /* x 为 falsy 值，包括 null, undefined, 0, "", false, NaN */ }
+if (x == null) { /* x 为 null 或 undefined */ }
+        </div>
+        
+        <button class="btn" onclick="showDetectionExamples()">运行检测示例</button>
+        <div id="detectionResults" class="result-box"></div>
+        
+        <h2>7. 最佳实践</h2>
+        <ul>
+            <li>如果想表示"无值"，显式地使用 <code>null</code></li>
+            <li>不要显式地将变量设为 <code>undefined</code>，那是语言引擎的工作</li>
+            <li>使用 <code>===</code> 进行严格比较，避免类型转换带来的问题</li>
+            <li>当需要检查值是否存在时，同时检查 <code>null</code> 和 <code>undefined</code></li>
+            <li>使用 <code>??</code> (空值合并运算符) 来处理 <code>null</code> 和 <code>undefined</code></li>
+        </ul>
+        
+        <h2>8. 空值合并运算符示例</h2>
+        <div class="code-block">
+let user = null;
+let defaultName = "匿名用户";
+
+// 空值合并运算符：仅当左侧为 null 或 undefined 时返回右侧值
+let displayName = user ?? defaultName; // "匿名用户"
+
+let zeroUser = 0;
+let displayZero = zeroUser ?? "默认值"; // 0 (因为 0 不是 null 或 undefined)
+        </div>
+        
+        <button class="btn" onclick="showNullishExamples()">运行空值合并示例</button>
+        <div id="nullishResults" class="result-box"></div>
+    </div>
+
+    <script>
+        function showTypeExamples() {
+            let typeResults = document.getElementById('typeResults');
+            
+            let result = `
+                <strong>类型检查结果：</strong><br>
+                typeof null: ${typeof null}<br>
+                typeof undefined: ${typeof undefined}<br>
+                null instanceof Object: ${null instanceof Object}<br>
+                null === null: ${null === null}<br>
+                undefined === undefined: ${undefined === undefined}
+            `;
+            
+            typeResults.innerHTML = result;
+        }
+        
+        function showAssignmentExamples() {
+            let assignmentResults = document.getElementById('assignmentResults');
+            
+            // 创建一些示例
+            let uninitializedVar;
+            let obj = {x: 1};
+            let objProp = obj.y; // undefined
+            
+            function noReturnFunc() {}
+            let funcResult = noReturnFunc(); // undefined
+            
+            function paramFunc(param) {
+                return param;
+            }
+            let paramResult = paramFunc(); // undefined
+            
+            let result = `
+                <strong>赋值场景示例：</strong><br>
+                未初始化变量: ${uninitializedVar} (${typeof uninitializedVar})<br>
+                不存在的对象属性: ${objProp} (${typeof objProp})<br>
+                无返回值函数: ${funcResult} (${typeof funcResult})<br>
+                未传参函数: ${paramResult} (${typeof paramResult})<br>
+                显式赋值为null: ${null} (${typeof null})
+            `;
+            
+            assignmentResults.innerHTML = result;
+        }
+        
+        function showComparisonExamples() {
+            let comparisonResults = document.getElementById('comparisonResults');
+            
+            let result = `
+                <strong>比较运算结果：</strong><br>
+                null == undefined: ${null == undefined}<br>
+                null === undefined: ${null === undefined}<br>
+                null == 0: ${null == 0}<br>
+                undefined == 0: ${undefined == 0}<br>
+                null === null: ${null === null}<br>
+                undefined === undefined: ${undefined === undefined}
+            `;
+            
+            comparisonResults.innerHTML = result;
+        }
+        
+        function showDetectionExamples() {
+            let detectionResults = document.getElementById('detectionResults');
+            
+            // 创建不同状态的变量
+            let uninitVar; // undefined
+            let nullVar = null;
+            let zeroVar = 0;
+            let emptyStr = "";
+            let falseVar = false;
+            
+            let result = `
+                <strong>检测方法示例：</strong><br>
+                undefined变量 typeof: ${typeof uninitVar === 'undefined'}<br>
+                undefined变量 === undefined: ${uninitVar === undefined}<br>
+                null变量 === null: ${nullVar === null}<br>
+                falsy检测 (uninitVar): ${!uninitVar}<br>
+                falsy检测 (nullVar): ${!nullVar}<br>
+                falsy检测 (zeroVar): ${!zeroVar}<br>
+                null/undefined检测 (== null): ${(uninitVar == null)}, ${(nullVar == null)}<br>
+            `;
+            
+            detectionResults.innerHTML = result;
+        }
+        
+        function showNullishExamples() {
+            let nullishResults = document.getElementById('nullishResults');
+            
+            // 空值合并运算符示例
+            let user = null;
+            let defaultName = "匿名用户";
+            let displayName = user ?? defaultName;
+            
+            let zeroUser = 0;
+            let displayZero = zeroUser ?? "默认值";
+            
+            let undefUser = undefined;
+            let displayUndef = undefUser ?? "默认值";
+            
+            let strUser = "具体用户名";
+            let displayStr = strUser ?? "默认值";
+            
+            let result = `
+                <strong>空值合并运算符 (??) 示例：</strong><br>
+                null ?? '默认值': ${displayName}<br>
+                0 ?? '默认值': ${displayZero}<br>
+                undefined ?? '默认值': ${displayUndef}<br>
+                '具体值' ?? '默认值': ${displayStr}<br>
+                注意：0, '', false 不会被 ?? 运算符视为"空值"
+            `;
+            
+            nullishResults.innerHTML = result;
+        }
+    </script>
+</body>
+</html>

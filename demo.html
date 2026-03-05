@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    p {
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h3 id="title">lzy</h3>
+  <p> 
+lzdkghdx
+  </p>
+
+  <script src="demo.js">
+
+    function debunce(fn, delay) {
+      let timer = null
+      return function () {
+        if (timer) {
+          clearTimeout(timer)
+        }
+        timer = setTimeout(fn, delay)
+      }
+    }
+    window.onscroll = debunce(scrollHandle, 100)
+
+
+  </script>
+</body>
+
+</html>
