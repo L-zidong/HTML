@@ -2,12 +2,16 @@
     <div class="main">
 
     <h3>Main</h3>
+    <Article/>
+    <Article/>
 </div>
 </template>
 <script>
-export default {    
+import Article from './Article.vue';
+export default {   
+   
   components: {
-
+    Article
   },
   data() {
     return {

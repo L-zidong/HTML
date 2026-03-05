@@ -1,9 +1,6 @@
 <template>
-    <div class="article">
-        <h3>Article Title</h3>
-    </div>
+    <h3>Item Title</h3>
 </template>
-<script></script>
 <style scoped>
 h3 {
     width: 80%;
@@ -11,9 +8,8 @@ h3 {
     text-align: center;
     line-height: 100px;
     box-sizing: border-box;
-    margin-top: 50px;
+    margin-top: 10px;
     background: #999;
     border-radius: 5px;
-
 }
 </style>
